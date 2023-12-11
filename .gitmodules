@@ -1,3 +1,4 @@
 [submodule "dependencies/Gemstone"]
 	path = dependencies/Gemstone
 	url = https://github.com/Ben-Bingham/Gemstone
+	branch = Converting-To-ECS
