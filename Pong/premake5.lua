@@ -12,7 +12,10 @@ project "Pong"
 
     includedirs { 
         "../dependencies/Gemstone/Gemstone/src", 
-        "src" 
+        "src",
+        "../dependencies/Gemstone/vendor/GLEW/include",
+        "../dependencies/Gemstone/vendor/GLFW/include",
+        "../dependencies/Gemstone/vendor/ImGui",
     }
 
     links { "Gemstone" }
