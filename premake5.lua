@@ -1,5 +1,7 @@
 workspace "Pong"
     configurations { "Debug", "Release" }
 
-    include "dependencies/Gemstone/Gemstone"
+    startproject "Pong"
+
+    include "dependencies/Gemstone"
     include "Pong"
