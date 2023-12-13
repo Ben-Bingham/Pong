@@ -34,8 +34,8 @@ project "Pong"
 
     libdirs {
         "../dependencies/Gemstone/dependencies/GLFW/lib-vc2022",
-        "../dependencies/Gemstone/dependencies/GLEW/lib/Release/x64"
+        "../dependencies/Gemstone/dependencies/GLEW/lib/Release/x64",
+        "../build/bin/debug/Gemstone"
     }
 
     postbuildcommands { "{COPYFILE} ..\\build\\bin\\Debug\\Gemstone\\Gemstone.dll ..\\build\\bin\\debug\\Pong" }
-    -- copylocal { "Gemstone" }

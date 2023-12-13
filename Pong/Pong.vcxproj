@@ -66,7 +66,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>glew32s.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\dependencies\Gemstone\dependencies\GLFW\lib-vc2022;..\dependencies\Gemstone\dependencies\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\dependencies\Gemstone\dependencies\GLFW\lib-vc2022;..\dependencies\Gemstone\dependencies\GLEW\lib\Release\x64;..\build\bin\debug\Gemstone;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /B /Y ..\build\bin\Debug\Gemstone\Gemstone.dll ..\build\bin\debug\Pong</Command>
@@ -85,7 +85,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>glew32s.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\dependencies\Gemstone\dependencies\GLFW\lib-vc2022;..\dependencies\Gemstone\dependencies\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\dependencies\Gemstone\dependencies\GLFW\lib-vc2022;..\dependencies\Gemstone\dependencies\GLEW\lib\Release\x64;..\build\bin\debug\Gemstone;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /B /Y ..\build\bin\Debug\Gemstone\Gemstone.dll ..\build\bin\debug\Pong</Command>
