@@ -1,8 +1,11 @@
 #include <iostream>
-#include "Core/Engine_New.h"
+#include "Core/Engine.h"
 #include "Utility/Log.h"
 
 int main() {
-	Gem::Engine_New engine{};
+	Gem::Engine engine{};
+
+	engine.eventSystem.Distribute();
+
 	std::cin.get();
 }
