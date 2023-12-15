@@ -14,6 +14,16 @@ project "Pong"
         "src/**.cpp" 
     }
 
+    filter "configurations:Debug"
+		defines { "PONG_DEBUG", "GEM_DEBUG" }
+        runtime "Debug"
+        symbols "On"
+	filter "configurations:Release"
+		defines { "PONG_RELEASE", "GEM_RELEASE" }
+        runtime "Release"
+        optimize "On"
+	filter {}
+
     includedirs { 
         "../dependencies/Gemstone/include", 
         "../dependencies/Gemstone/dependencies/GLEW/include",
@@ -24,8 +34,8 @@ project "Pong"
         "include"
     }
 
-    links { "Gemstone" }
     links {
+        "Gemstone",
         "glew32s",
         "opengl32",
         "glfw3",
@@ -37,5 +47,3 @@ project "Pong"
         "../dependencies/Gemstone/dependencies/GLEW/lib/Release/x64",
         "../build/bin/debug/Gemstone"
     }
-
-    postbuildcommands { "{COPYFILE} ..\\build\\bin\\Debug\\Gemstone\\Gemstone.dll ..\\build\\bin\\debug\\Pong" }

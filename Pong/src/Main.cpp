@@ -1,11 +1,19 @@
+#include "Pong.h"
 #include <iostream>
 #include "Core/Engine.h"
-#include "Utility/Log.h"
+#include "Core/Game.h"
 
 int main() {
-	Gem::Engine engine{};
+	Engine engine{};
 
-	engine.eventSystem.Distribute();
+	Game game{ engine };
 
-	std::cin.get();
+	auto level = CreatePtr<Pong>();
+
+	game.Run(level, [](Ptr<Level> level)->bool {
+		const Ptr<Pong> pongLevel = std::reinterpret_pointer_cast<Pong, Level>(level);
+		const int score = pongLevel->winningScore;
+
+		return pongLevel->leftScore < score || pongLevel->rightScore < score;
+	});
 }
