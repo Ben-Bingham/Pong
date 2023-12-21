@@ -1,14 +1,17 @@
 #include "Pong.h"
-#include <iostream>
 #include "Core/Engine.h"
 #include "Core/Game.h"
+#include "Core/Event System/EventSystem.h"
+#include "Utility/Utility.h"
 
 int main() {
-	Engine engine{};
+	Path::SetGemAssets("../dependencies/Gemstone");
 
-	Game game{ engine };
+	Engine engine{}; // TODO can the engine init the main subsystems, but they be accessd staticly?
 
-	auto level = CreatePtr<Pong>();
+	Game game{ };
+
+	auto level = CreatePtr<Pong>(engine);
 
 	game.Run(level, [](Ptr<Level> level)->bool {
 		const Ptr<Pong> pongLevel = std::reinterpret_pointer_cast<Pong, Level>(level);

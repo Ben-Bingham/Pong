@@ -47,3 +47,5 @@ project "Pong"
         "../dependencies/Gemstone/dependencies/GLEW/lib/Release/x64",
         "../build/bin/debug/Gemstone"
     }
+
+    postbuildcommands { "xcopy assets ..\\build\\bin\\debug\\Pong\\assets /s /e /y" }

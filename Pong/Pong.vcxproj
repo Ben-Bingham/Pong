@@ -72,6 +72,9 @@
       <AdditionalDependencies>glew32s.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\dependencies\Gemstone\dependencies\GLFW\lib-vc2022;..\dependencies\Gemstone\dependencies\GLEW\lib\Release\x64;..\build\bin\debug\Gemstone;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy assets ..\build\bin\debug\Pong\assets /s /e /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -95,7 +98,13 @@
       <AdditionalDependencies>glew32s.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\dependencies\Gemstone\dependencies\GLFW\lib-vc2022;..\dependencies\Gemstone\dependencies\GLEW\lib\Release\x64;..\build\bin\debug\Gemstone;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy assets ..\build\bin\debug\Pong\assets /s /e /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Pong.h" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
@@ -106,9 +115,6 @@
     <ProjectReference Include="..\dependencies\Gemstone\dependencies\ImGui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Pong.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
