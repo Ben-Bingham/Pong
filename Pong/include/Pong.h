@@ -1,7 +1,7 @@
 #pragma once
-#include "Core/Engine.h"
 #include "Core/Level.h"
 
+#include "Rendering/Camera_New.h"
 #include "Rendering/Meshes/Mesh.h"
 #include "Rendering/Materials/Material.h"
 #include "Rendering/Materials/MaterialFactory.h"
@@ -13,8 +13,7 @@ using namespace Gem;
 
 class Pong : public Level {
 public:
-	Pong(Engine& eng)
-		: Level(eng) {
+	Pong() {
 		InitEntities();
 	}
 
@@ -43,6 +42,7 @@ public:
 	Entity leftPaddle{ DeadEntity };
 	Entity rightPaddle{ DeadEntity };
 	Entity ball{ DeadEntity };
+	Entity camera{ DeadEntity };
 
 	const int winningScore{ 10 };
 
@@ -61,6 +61,12 @@ private:
 		ecs.componentManager.AddComponent<Mesh>(ball);
 		ecs.componentManager.AddComponent<Material>(ball, m_WhiteMaterial);
 		//ecs.componentManager.AddComponent<BoxCollider>(ball);
+
+		camera = ecs.entityManager.Create();
+		ecs.componentManager.AddComponent<Camera_New>(camera);
+		ecs.componentManager.AddComponent<Transform>(camera);
+
+		ecs.componentManager.GetComponent<Transform>(camera).position.z = 5;
 	}
 
 	void InitPaddle(Entity paddle) {
