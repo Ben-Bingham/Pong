@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/Level.h"
 
-#include "Rendering/Camera_New.h"
+#include "..\..\dependencies\Gemstone\include\Rendering\Camera.h"
 #include "Rendering/Meshes/Mesh.h"
 #include "Rendering/Materials/Material.h"
 #include "Rendering/Materials/MaterialFactory.h"
@@ -63,7 +63,7 @@ private:
 		//ecs.componentManager.AddComponent<BoxCollider>(ball);
 
 		camera = ecs.entityManager.Create();
-		ecs.componentManager.AddComponent<Camera_New>(camera);
+		ecs.componentManager.AddComponent<Camera>(camera);
 		ecs.componentManager.AddComponent<Transform>(camera);
 
 		ecs.componentManager.GetComponent<Transform>(camera).position.z = 5;

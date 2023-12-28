@@ -3,8 +3,7 @@
 #include "Core/Game.h"
 #include "Core/Event System/EventSystem.h"
 
-#include "Rendering/Geometry/Quarter.h"
-#include "Rendering/Materials/ScreenSpace.h"
+#include "Input/Keyboard.h"
 
 #include "Utility/Utility.h"
 
@@ -21,11 +20,15 @@ public:
 
 		camera = ecs.entityManager.Create();
 		ecs.componentManager.AddComponent<Transform>(camera);
-		ecs.componentManager.AddComponent<Camera_New>(camera);
+		ecs.componentManager.AddComponent<Camera>(camera);
+
+		ecs.systemManager.AddSystem([](EntityComponentSystem& ecs) {
+			//if (Keyboard::G)
+		});
 	}
 
 	~TestLevel() {
-		ecs.componentManager.RemoveComponent<Camera_New>(camera);
+		ecs.componentManager.RemoveComponent<Camera>(camera);
 		ecs.componentManager.RemoveComponent<Transform>(camera);
 		ecs.entityManager.Delete(camera);
 
@@ -46,16 +49,16 @@ int main() {
 
 	Game game{ };
 
-	/*auto level = CreatePtr<TestLevel>();
+	auto level = CreatePtr<TestLevel>();
 
-	game.Run(level);*/
+	game.Run(level);
 
-	auto level = CreatePtr<Pong>();
+	/*auto level = CreatePtr<Pong>();
 
 	game.Run(level, [](Ptr<Level> level)->bool {
 		const Ptr<Pong> pongLevel = std::reinterpret_pointer_cast<Pong, Level>(level);
 		const int score = pongLevel->winningScore;
 
 		return pongLevel->leftScore < score || pongLevel->rightScore < score;
-	});
+	});*/
 }
