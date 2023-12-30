@@ -103,10 +103,17 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\CameraController.h" />
+    <ClInclude Include="include\FPSCamera.h" />
+    <ClInclude Include="include\Paddles.h" />
+    <ClInclude Include="include\PaddlesSystem.h" />
     <ClInclude Include="include\Pong.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FPSCamera.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\PaddlesSystem.cpp" />
+    <ClCompile Include="src\Pong.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dependencies\Gemstone\Gemstone.vcxproj">

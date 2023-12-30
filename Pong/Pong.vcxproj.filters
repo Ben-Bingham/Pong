@@ -12,10 +12,17 @@
     <ClInclude Include="include\Pong.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\CameraController.h" />
+    <ClInclude Include="include\FPSCamera.h" />
+    <ClInclude Include="include\Paddles.h" />
+    <ClInclude Include="include\PaddlesSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pong.cpp" />
+    <ClCompile Include="src\FPSCamera.cpp" />
+    <ClCompile Include="src\PaddlesSystem.cpp" />
   </ItemGroup>
 </Project>
