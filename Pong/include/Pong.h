@@ -1,6 +1,4 @@
 #pragma once
-#include <gl/glew.h>
-#include <GLFW/glfw3.h>
 #include "Core/Level.h"
 #include "Core/Event System/EventHandler.h"
 #include "Input/KeyboardEvents.h"
@@ -31,6 +29,8 @@ public:
 	Entity camera{ DeadEntity };
 
 	const int winningScore{ 10 };
+
+	const float ballSpeed = 5.0f;
 
 private:
 	SolidColour m_WhiteMaterial{ CreateMaterial(Colour::White) };

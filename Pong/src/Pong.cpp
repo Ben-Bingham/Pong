@@ -4,23 +4,37 @@
 #include "Paddles.h"
 #include "PaddlesSystem.h"
 
-#include "Core/Window.h"
 #include "Input/Keyboard.h"
+
+#include "Physics/PhysicalProperties.h"
+#include "Physics/Visualization/PhysicsVisualizationComponent.h"
+
 #include "Rendering/Camera.h"
+#include "Rendering/Renderer.h"
 #include "Rendering/Materials/Material.h"
 #include "Rendering/Meshes/Mesh.h"
 #include "Utility/Transform.h"
+#include "Utility/Utility.h"
 
 using namespace Gem;
 
 Pong::Pong() {
 	CreateEntities();
 
-	Window::Get().DisableCursor();
-
 	ecs.systemManager.AddSystem(PaddlesSystem);
 
 	OpenGlContext::Get().clearColour = Colour::Black;
+
+	ecs.systemManager.AddSystem([&](EntityComponentSystem& ecs) {
+		auto& transform = ecs.componentManager.GetComponent<Transform>(ball);
+		auto& properties = ecs.componentManager.GetComponent<PhysicalProperties>(ball);
+
+		if (Keyboard::Get().GetKey(Key::Y)) {
+			properties.netForce += Vector3f::east * 0.5f;
+		}
+
+		Renderer::Get().debug.Add(transform.position, transform.position + properties.velocity);
+	});
 }
 
 Pong::~Pong() {
@@ -63,6 +77,8 @@ Entity Pong::CreatePaddle() {
 	ecs.componentManager.AddComponent<Transform>(paddle);
 	ecs.componentManager.AddComponent<Mesh>(paddle);
 	ecs.componentManager.AddComponent<Material>(paddle, m_WhiteMaterial);
+	ecs.componentManager.AddComponent<PhysicalProperties>(paddle);
+	ecs.componentManager.AddComponent<PhysicsVisualizationComponent>(paddle, false, false, false);
 	//ecs.componentManager.AddComponent<BoxCollider>(paddle);
 
 	return paddle;
@@ -70,6 +86,8 @@ Entity Pong::CreatePaddle() {
 
 void Pong::DeletePaddle(Entity paddle) {
 	//ecs.componentManager.RemoveComponent<BoxCollider>(paddle);
+	ecs.componentManager.RemoveComponent<PhysicsVisualizationComponent>(paddle);
+	ecs.componentManager.RemoveComponent<PhysicalProperties>(paddle);
 	ecs.componentManager.RemoveComponent<Material>(paddle);
 	ecs.componentManager.RemoveComponent<Mesh>(paddle);
 	ecs.componentManager.RemoveComponent<Transform>(paddle);
@@ -80,15 +98,20 @@ Entity Pong::CreateBall() {
 	ecs.componentManager.AddComponent<Transform>(ball);
 	ecs.componentManager.AddComponent<Mesh>(ball);
 	ecs.componentManager.AddComponent<Material>(ball, m_WhiteMaterial);
+	ecs.componentManager.AddComponent<PhysicalProperties>(ball);
+	ecs.componentManager.AddComponent<PhysicsVisualizationComponent>(ball);
 	//ecs.componentManager.AddComponent<BoxCollider>(ball);
 
 	ecs.componentManager.GetComponent<Transform>(ball).scale = Vector3f{ 0.6f, 0.6f, 0.6f };
+	ecs.componentManager.GetComponent<PhysicalProperties>(ball).velocity = Vector3f::east * ballSpeed;
 
 	return ball;
 }
 
 void Pong::DeleteBall(Entity ball) {
 	//ecs.componentManager.RemoveComponent<BoxCollider>(paddle);
+	ecs.componentManager.RemoveComponent<PhysicsVisualizationComponent>(ball);
+	ecs.componentManager.RemoveComponent<PhysicalProperties>(ball);
 	ecs.componentManager.RemoveComponent<Material>(ball);
 	ecs.componentManager.RemoveComponent<Mesh>(ball);
 	ecs.componentManager.RemoveComponent<Transform>(ball);

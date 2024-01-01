@@ -108,7 +108,8 @@ public:
 	Entity camera{ DeadEntity };
 };
 
-int main() {
+int main() { // TODO OpenGLContext and GLFW context should be the only spots importing Gl.h and GLEW.h, fixing the ordering or includes issue
+	// TODO implement orthographic camera.
 	Path::SetGemAssets("../dependencies/Gemstone");
 
 	Engine engine{ };
